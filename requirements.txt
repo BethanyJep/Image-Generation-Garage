@@ -2,4 +2,3 @@ openai
 Flask
 python-dotenv
 flask_restful
-flask_httpauth

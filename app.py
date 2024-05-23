@@ -9,7 +9,6 @@ import os
 load_dotenv()
 
 # Secret API Key from OpenAI - Retrieve from Garage Org in OpenAI
-# OPENAI_API_KEY= os.getenv("OPENAI_API_KEY")
 OPENAI_API_KEY= os.getenv("OPENAI_API_KEY")
 
 # Initiate the interaction with any OpenAI services
@@ -20,6 +19,10 @@ client = OpenAI(api_key=OPENAI_API_KEY)
 
 app = Flask(__name__)
 api = Api(app)
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    return render_template('index.html')
 
 class ImageGenerator(Resource):
     def post(self):
