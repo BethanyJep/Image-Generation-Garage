@@ -5,24 +5,18 @@ import random
 from dotenv import load_dotenv
 import os
 
-
-
 # Load the environment variables from the .env file
 load_dotenv()
 
 # Secret API Key from OpenAI - Retrieve from Garage Org in OpenAI
 # OPENAI_API_KEY= os.getenv("OPENAI_API_KEY")
-OPENAI_API_KEY= ""
+OPENAI_API_KEY= os.getenv("OPENAI_API_KEY")
 
 # Initiate the interaction with any OpenAI services
 os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 
-# Instantiate OpenAI client
-client = OpenAI()
-
 app = Flask(__name__)
 api = Api(app)
-
 
 class ImageGenerator(Resource):
     def post(self):
@@ -36,17 +30,13 @@ class ImageGenerator(Resource):
         baseline_prompt = random.choice(descriptive_prompts_list)
 
         def generate_complete_prompt(user_prompt):
-            match user_prompt:
-                case 1:
-                    return baseline_prompt.format("Kisumu in 2050") 
-                case 2:
-                    return baseline_prompt.format("Mombasa in 2100")
-                case 3:
-                    return baseline_prompt.format("Nairobi in 2030")
-                case _:
-                    return user_prompt
+            return baseline_prompt.format(user_prompt)
 
         complete_prompt = generate_complete_prompt(args['user_prompt'])
+
+        # Instantiate OpenAI client
+        client = OpenAI(api_key=OPENAI_API_KEY)
+
         response = client.images.generate(
             model = "dall-e-3",
             prompt = complete_prompt,

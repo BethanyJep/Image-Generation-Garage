@@ -1,9 +1,14 @@
 import os
 from openai import OpenAI
 import random
+from dotenv import load_dotenv
+
+# Load the environment variables from the .env file
+load_dotenv()
 
 # Secret API Key from OpenAI - Retrieve from Garage Org in OpenAI
-OPENAI_API_KEY= ""
+# OPENAI_API_KEY= os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY= os.getenv("OPENAI_API_KEY")
 
 # Initiate the interaction with any OpenAI services
 os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
