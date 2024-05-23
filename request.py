@@ -16,7 +16,7 @@ data = {
     "user_prompt": "1"
 }
 
-# Send a POST request to the API
+# # Send a POST request to the API
 response = requests.post(url, json=data)
 
 # Print the response from the API

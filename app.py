@@ -17,20 +17,7 @@ os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 # Instantiate OpenAI client
 client = OpenAI(api_key=OPENAI_API_KEY)
 
-app = Flask(__name__)
-api = Api(app)
-
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    return render_template('index.html')
-
-class ImageGenerator(Resource):
-    def post(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument('user_prompt', required=True, type=int, help='User prompt cannot be blank!')
-        args = parser.parse_args()
-
-        descriptive_prompts_list = ["A surrealist oil painting of the Kenyan city {}, inspired by Salvador Dalí, with cool tones (blues, greens) and set during a dramatic and high contrast thunderstorm.",
+descriptive_prompts_list = ["A surrealist oil painting of the Kenyan city {}, inspired by Salvador Dalí, with cool tones (blues, greens) and set during a dramatic and high contrast thunderstorm.",
                              "An abstract digital art piece of the Kenyan city {}, with vibrant neon lights, inspired by Wassily Kandinsky, and illuminated by bioluminescent marine life in a nighttime setting.", 
                              "A photorealistic pencil sketch of the Kenyan city {}, with warm tones (reds, yellows) and bathed in the soft light of the golden hour (sunrise/sunset), emulating the style of John Constable.",
                              "A minimalist mixed media artwork depicting the Kenyan city {}, inspired by modern digital artists, using bright and vibrant colors and lit by the glow of futuristic billboards at night.",
@@ -42,9 +29,9 @@ class ImageGenerator(Resource):
                              "A photorealistic charcoal drawing of the Kenyan city {}, with intricate details, inspired by the style of J.M.W. Turner, using soft, cool tones and illuminated by the gentle morning light."]
 
         # randomize the selection of prompt descriptions
-        baseline_prompt = random.choice(descriptive_prompts_list)
+baseline_prompt = random.choice(descriptive_prompts_list)
 
-        feeling_lucky_prompts_list = ["Depict a group of Maasai warriors dressed in their traditional red shukas, holding spears and shields, standing on the open savannah as the sun rises in the background, casting a golden hue over the landscape.",
+feeling_lucky_prompts_list = ["Depict a group of Maasai warriors dressed in their traditional red shukas, holding spears and shields, standing on the open savannah as the sun rises in the background, casting a golden hue over the landscape.",
                                     "Create an image of the Nairobi city skyline at night, with modern skyscrapers illuminated by city lights, and the iconic Kenyatta International Convention Centre prominently featured.",
                                     "Illustrate a scene from the Maasai Mara National Reserve with a diverse array of wildlife such as lions, elephants, zebras, and giraffes roaming freely across the vast plains, with acacia trees dotting the horizon.",
                                     "Show the vibrant Lamu Cultural Festival with traditional dhow boats on the water, local Swahili architecture, and people in colorful attire participating in dances and celebrations.",
@@ -55,33 +42,42 @@ class ImageGenerator(Resource):
                                     "Depict the pristine white sands and crystal-clear waters of Diani Beach, with palm trees swaying in the breeze, and a few beachgoers enjoying the serene environment.",
                                     "Illustrate a scene that captures the cultural diversity of Nairobi, with people from different ethnic backgrounds engaging in various activities, from street food vendors to traditional dancers, set against a backdrop of urban life."]
 
-        # Combine user propmt and descriptive prompt
-        def generate_complete_prompt(user_prompt):
-            match user_prompt:
-                case 1:
-                    return baseline_prompt.format("Nairobi, in 2500") 
-                case 2:
-                    return baseline_prompt.format("Mombasa, in 2270")
-                case 3:
-                    return baseline_prompt.format("Kisumu, in 2095")
-                case 4:
-                    return baseline_prompt.format("Nakuru, in 2470")
-                case 5:
-                    return baseline_prompt.format("Eldoret, in 2150")
-                case 6:
-                    return baseline_prompt.format("Thika, in 3200")
-                case 7:
-                    return baseline_prompt.format("Machakos, in 2620")
-                case 8:
-                    return baseline_prompt.format("Kitale, in 3000")
-                case 9:
-                    return baseline_prompt.format("Malindi, in 2110")
-                case 10:
-                    return random.choice(feeling_lucky_prompts_list)
+# Combine user propmt and descriptive prompt
+def generate_complete_prompt(user_prompt):
+    match user_prompt:
+        case "1":
+            return baseline_prompt.format("Nairobi, in 2500") 
+        case "2":
+            return baseline_prompt.format("Mombasa, in 2270")
+        case "3":
+            return baseline_prompt.format("Kisumu, in 2095")
+        case "4":
+            return baseline_prompt.format("Nakuru, in 2470")
+        case "5":
+            return baseline_prompt.format("Eldoret, in 2150")
+        case "6":
+            return baseline_prompt.format("Thika, in 3200")
+        case '7':
+            return baseline_prompt.format("Machakos, in 2620")
+        case "8":
+            return baseline_prompt.format("Kitale, in 3000")
+        case "9":
+            return baseline_prompt.format("Malindi, in 2110")
+        case "10":
+            return random.choice(feeling_lucky_prompts_list)
 
-                # User's open ended prompt
-                case _:
-                    return user_prompt
+        # User's open ended prompt
+        case _:
+            return user_prompt        
+
+app = Flask(__name__)
+api = Api(app)
+
+class ImageGenerator(Resource):
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('user_prompt', required=True, type=str, help='User prompt cannot be blank!')
+        args = parser.parse_args()
 
         complete_prompt = generate_complete_prompt(args['user_prompt'])
 
