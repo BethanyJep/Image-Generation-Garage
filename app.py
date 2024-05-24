@@ -17,16 +17,16 @@ os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 # Instantiate OpenAI client
 client = OpenAI(api_key=OPENAI_API_KEY)
 
-descriptive_prompts_list = ["A surrealist oil painting of the Kenyan city {}, inspired by Salvador Dalí, with cool tones (blues, greens) and set during a dramatic and high contrast thunderstorm.",
-                             "An abstract digital art piece of the Kenyan city {}, with vibrant neon lights, inspired by Wassily Kandinsky, and illuminated by bioluminescent marine life in a nighttime setting.", 
-                             "A photorealistic pencil sketch of the Kenyan city {}, with warm tones (reds, yellows) and bathed in the soft light of the golden hour (sunrise/sunset), emulating the style of John Constable.",
-                             "A minimalist mixed media artwork depicting the Kenyan city {}, inspired by modern digital artists, using bright and vibrant colors and lit by the glow of futuristic billboards at night.",
-                             "An impressionist watercolor painting of the Kenyan city {}, inspired by Claude Monet, with pastel colors and set during an overcast and rainy day.",
-                             "A futuristic 3D render of the Kenyan city {}, with sleek, modern architecture, inspired by Zaha Hadid, using a monochrome color scheme and lit by the harsh, stark sunlight of the Martian day.",
-                             "A vintage-style oil painting of the Kenyan city {}, inspired by the works of Jules Verne, with dark and moody tones, set during a foggy twilight.",
-                             "A hyper realistic digital art piece of the Kenyan city {}, inspired by the style of Syd Mead, featuring bright neon colors and dynamic, high-contrast lighting of a vibrant night scene.",
-                             "An abstract mixed media collage of the Kenyan city {}, inspired by Marc Chagall, using a mix of cool and warm tones, set during a surreal sunset with magical lighting.",
-                             "A photorealistic charcoal drawing of the Kenyan city {}, with intricate details, inspired by the style of J.M.W. Turner, using soft, cool tones and illuminated by the gentle morning light."]
+descriptive_prompts_list = ["A surrealist oil painting of the Kenyan city {}, with cool tones (blues, greens) and set during a dramatic and high contrast thunderstorm.",
+                             "An abstract digital art piece of the Kenyan city {}, with vibrant neon lights, and illuminated by bioluminescent marine life in a nighttime setting.", 
+                             "A photorealistic pencil sketch of the Kenyan city {}, with warm tones (reds, yellows) and bathed in the soft light of the golden hour (sunrise/sunset).",
+                             "A minimalist mixed media artwork depicting the Kenyan city {}, using bright and vibrant colors and lit by the glow of futuristic billboards at night.",
+                             "An impressionist watercolor painting of the Kenyan city {}, with pastel colors and set during an overcast and rainy day.",
+                             "A futuristic 3D render of the Kenyan city {}, with sleek, modern architecture, using a monochrome color scheme and lit by the harsh, stark sunlight of the Martian day.",
+                             "A vintage-style oil painting of the Kenyan city {}, with dark and moody tones, set during a foggy twilight.",
+                             "A hyper realistic digital art piece of the Kenyan city {}, featuring bright neon colors and dynamic, high-contrast lighting of a vibrant night scene.",
+                             "An abstract mixed media collage of the Kenyan city {}, using a mix of cool and warm tones, set during a surreal sunset with magical lighting.",
+                             "A photorealistic charcoal drawing of the Kenyan city {}, with intricate details, using soft, cool tones and illuminated by the gentle morning light."]
 
         # randomize the selection of prompt descriptions
 baseline_prompt = random.choice(descriptive_prompts_list)
