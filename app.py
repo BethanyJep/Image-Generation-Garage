@@ -46,25 +46,25 @@ feeling_lucky_prompts_list = ["Depict a group of Maasai warriors dressed in thei
 # Combine user propmt and descriptive prompt
 def generate_complete_prompt(user_prompt):
     match user_prompt:
-        case "1":
+        case 1:
             return baseline_prompt.format("Nairobi, in 2500") 
-        case "2":
+        case 2:
             return baseline_prompt.format("Mombasa, in 2270")
-        case "3":
+        case 3:
             return baseline_prompt.format("Kisumu, in 2095")
-        case "4":
+        case 4:
             return baseline_prompt.format("Nakuru, in 2470")
-        case "5":
+        case 5:
             return baseline_prompt.format("Eldoret, in 2150")
-        case "6":
+        case 6:
             return baseline_prompt.format("Thika, in 3200")
-        case '7':
+        case 7:
             return baseline_prompt.format("Machakos, in 2620")
-        case "8":
+        case 8:
             return baseline_prompt.format("Kitale, in 3000")
-        case "9":
+        case 9:
             return baseline_prompt.format("Malindi, in 2110")
-        case "10":
+        case 10:
             return random.choice(feeling_lucky_prompts_list)
 
         # User's open ended prompt
