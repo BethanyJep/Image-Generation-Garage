@@ -3,6 +3,7 @@ from flask_restful import Resource, Api, reqparse
 from openai import OpenAI
 import random
 from dotenv import load_dotenv
+from flask_caching import Cache
 import os
 
 # Load the environment variables from the .env file
@@ -72,8 +73,10 @@ def generate_complete_prompt(user_prompt):
 
 app = Flask(__name__)
 api = Api(app)
+cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
 class ImageGenerator(Resource):
+    @cache.cached(timeout=172800)
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('user_prompt', required=True, type=str, help='User prompt cannot be blank!')
