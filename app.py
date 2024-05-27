@@ -26,7 +26,7 @@ class ImageGenerator(Resource):
     # @cache.memoize(timeout=20)
     def post(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('user_prompt', required=True, type=str, help='User prompt cannot be blank!')
+        parser.add_argument('user_prompt', required=True, type=int, help='User prompt cannot be blank!')
         args = parser.parse_args()
 
         descriptive_prompts_list = ["A surrealist oil painting of the Kenyan city {}, with cool tones (blues, greens) and set during a dramatic and high contrast thunderstorm.",
