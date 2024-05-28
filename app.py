@@ -23,7 +23,7 @@ api = Api(app)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
 class ImageGenerator(Resource):
-    @cache.memoize(timeout=20)
+    @cache.memoize(timeout=10)
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('user_prompt', required=True, type=str, help='User prompt cannot be blank!')
