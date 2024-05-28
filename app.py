@@ -89,7 +89,7 @@ class ImageGenerator(Resource):
             model = "dall-e-3",
             prompt = complete_prompt,
             size = "1024x1792",
-            quality = "hd",
+            quality = "standard",
             n=1,
         )
 
