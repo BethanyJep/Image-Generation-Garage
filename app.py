@@ -3,7 +3,7 @@ from flask_restful import Resource, Api, reqparse
 from openai import OpenAI
 import random
 from dotenv import load_dotenv
-# from flask_caching import Cache
+from flask_caching import Cache
 import os
 
 # Load the environment variables from the .env file
@@ -20,10 +20,10 @@ client = OpenAI(api_key=OPENAI_API_KEY)
 
 app = Flask(__name__)
 api = Api(app)
-# cache = Cache(app, config={'CACHE_TYPE': 'simple'})
+cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
 class ImageGenerator(Resource):
-    # @cache.memoize(timeout=20)
+    @cache.memoize(timeout=20)
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('user_prompt', required=True, type=str, help='User prompt cannot be blank!')
