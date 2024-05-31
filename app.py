@@ -59,23 +59,23 @@ class ImageGenerator(Resource):
         def generate_complete_prompt(user_prompt):
             match user_prompt:
                 case "1":
-                    return baseline_prompt.format("Nairobi, in 2500") 
+                    return baseline_prompt.format("Nairobi - sustainable skyscrapers tower above lush green spaces, in 2500") 
                 case "2":
-                    return baseline_prompt.format("Mombasa, in 2270")
+                    return baseline_prompt.format("Mombasa - a coastal haven, in 2270")
                 case "3":
-                    return baseline_prompt.format("Kisumu, in 2095")
+                    return baseline_prompt.format("Kisumu - smart aquaculture systems thrive alongside cultural centers, in 2095")
                 case "4":
-                    return baseline_prompt.format("Nakuru, in 2470")
+                    return baseline_prompt.format("Nakuru - a model eco-city, in 2470")
                 case "5":
-                    return baseline_prompt.format("Eldoret, in 2150")
+                    return baseline_prompt.format("Eldoret - an athletic utopia, in 2150")
                 case "6":
-                    return baseline_prompt.format("Thika, in 3200")
+                    return baseline_prompt.format("Thika - an agro-tech capital, in 3200")
                 case "7":
                     return baseline_prompt.format("Machakos, in 2620")
                 case "8":
-                    return baseline_prompt.format("Kitale, in 3000")
+                    return baseline_prompt.format("Kitale - an agricultural powerhouse, in 3000")
                 case "9":
-                    return baseline_prompt.format("Malindi, in 2110")
+                    return baseline_prompt.format("Malindi - historic Swahili coast, in 2110")
                 case "10":
                     return random.choice(feeling_lucky_prompts_list)
 
